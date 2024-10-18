@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.vsidx
+*.testlog
+*.manifest
+*.json
+*.wsuo
+*.sqlite
+/Hackathon.ChatBot/obj
+/Hackathon.ChatBot/.vs/Hackathon.ChatBot

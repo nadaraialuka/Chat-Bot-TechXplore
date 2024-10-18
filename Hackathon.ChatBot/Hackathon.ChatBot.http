@@ -1,0 +1,6 @@
+@Hackathon.ChatBot_HostAddress = http://localhost:5152
+
+GET {{Hackathon.ChatBot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
