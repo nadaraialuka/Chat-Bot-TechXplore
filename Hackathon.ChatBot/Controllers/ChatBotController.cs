@@ -1,5 +1,7 @@
-﻿using Hackathon.ChatBot.Code.Interfaces;
+﻿using Hackathon.ChatBot.Code.Entitites;
+using Hackathon.ChatBot.Code.Interfaces;
 using Hackathon.ChatBot.Code.Models;
+using Hackathon.ChatBot.Context;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackathon.ChatBot.Controllers
@@ -10,11 +12,13 @@ namespace Hackathon.ChatBot.Controllers
     {
         private readonly ILogger<ChatBotController> _logger;
         private readonly IOpenAI openAI;
+        private readonly AppDbContext context;
 
-        public ChatBotController(ILogger<ChatBotController> logger, IOpenAI openAI)
+        public ChatBotController(ILogger<ChatBotController> logger, IOpenAI openAI, AppDbContext context)
         {
             _logger = logger;
             this.openAI = openAI;
+            this.context = context;
         }
 
         [HttpGet]
@@ -23,43 +27,9 @@ namespace Hackathon.ChatBot.Controllers
         {
             return new AggregatedProducts()
             {
-                Accounts =
-                [
-                    new Account()
-                    {
-                        Id = 1,
-                        Iban = "TBGEI9201I30J120S12M21",
-                        Ccy = "GEL",
-                        Type = "მიმდინარე",
-                        Subtype = "მიმდინარე"
-                    },
-                    new Account()
-                    {
-                        Id = 2,
-                        Iban = "TBGEI9301I30J120S12M21",
-                        Ccy = "USD",
-                        Type = "მიმდინარე",
-                        Subtype = "მიმდინარე"
-                    }
-                ],
-                Cards =
-                [
-                    new Card()
-                    {
-                        Id = 1,
-                        Name = "MC World Elite",
-                        Type = "MasterCard"
-                    }
-                ],
-                Deposits =
-                [
-                    new Deposit()
-                    {
-                        Id = 1,
-                        Name = "Goal",
-                        FriendlyName = "ახალი მობილური"
-                    }
-                ]
+                Accounts = context.Accounts.Where(a => a.CustomerId == customerId),
+                Cards = context.Cards.Where(a => a.CustomerId == customerId),
+                Deposits = context.Deposits.Where(a => a.CustomerId == customerId)
             };
         }
 

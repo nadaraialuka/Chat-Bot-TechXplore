@@ -30,8 +30,4 @@
     <ProjectReference Include="..\Hackathon.ChatBot.Code\Hackathon.ChatBot.Code.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Context\Migrations\" />
-  </ItemGroup>
-
 </Project>

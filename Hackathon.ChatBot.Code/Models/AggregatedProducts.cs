@@ -1,4 +1,6 @@
-﻿namespace Hackathon.ChatBot.Code.Models
+﻿using Hackathon.ChatBot.Code.Entitites;
+
+namespace Hackathon.ChatBot.Code.Models
 {
     public class AggregatedProducts
     {
