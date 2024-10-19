@@ -1,7 +1,7 @@
 <div class="fixed bottom-4 right-4">
   <button
     (click)="toggleChat()"
-    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg"
+    class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-full shadow-lg"
   >
     {{ isOpen ? 'დახურვა' : 'ჩათი' }}
   </button>
@@ -11,7 +11,7 @@
     class="absolute bottom-16 right-0 w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col"
   >
     <!-- Header -->
-    <div class="bg-blue-500 text-white p-3 rounded-t-lg flex justify-between items-center">
+    <div class="bg-sky-500 text-white p-3 rounded-t-lg flex justify-between items-center">
       <h3 class="font-bold">Chat Assistant</h3>
       <button (click)="closeChat()" class="text-white hover:text-gray-200">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -21,7 +21,7 @@
     </div>
 
     <!-- Notification -->
-    <div *ngIf="showNotification" class="bg-green-500 text-white p-2 text-center">
+    <div *ngIf="showNotification" class="bg-green-700 text-white p-2 text-center">
       თქვენი მოთხოვნა შესრულებულია
     </div>
 
@@ -32,8 +32,8 @@
         <div
           class="max-w-[70%] p-2 rounded-lg"
           [ngClass]="{
-                'bg-blue-100 text-blue-800': message.isUser,
-                'bg-green-100 text-green-800': !message.isUser
+                'bg-sky-500 text-white': message.isUser,
+                'bg-zinc-100 text-zinc-800': !message.isUser
               }"
         >
           {{ message.text }}
@@ -61,7 +61,7 @@
           />
           <button
             type="submit"
-            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-lg"
+            class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-r-lg"
           >
             <img [src]="'assets/send.svg'" alt="გაგზავნა">
           </button>
