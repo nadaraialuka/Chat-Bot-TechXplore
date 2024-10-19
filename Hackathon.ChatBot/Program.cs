@@ -1,7 +1,6 @@
-using Hackathon.ChatBot.BasicAuth;
-using Hackathon.ChatBot.Context;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.EntityFrameworkCore;
+
+using Hackathon.ChatBot.Code.Interfaces;
+using Hackathon.ChatBot.Code.Implementations;
 
 namespace Hackathon.ChatBot
 {
@@ -12,26 +11,19 @@ namespace Hackathon.ChatBot
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllers();
+            builder.Services.AddTransient<IOpenAI, Code.Implementations.OpenAI> ();
 
-            // Swagger for API documentation
+
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            // Add Basic Authentication
-            builder.Services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-
-            // Add Authorization
-            builder.Services.AddAuthorization();
-
-            // Add DbContext
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
-
+            builder.Services.AddSignalR();
+            //builder.Services.AddDbContext<ChatDbContext>(options =>
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("ChatDbConnection")));
             var app = builder.Build();
 
-            // Swagger configuration
+            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -40,9 +32,10 @@ namespace Hackathon.ChatBot
 
             app.UseHttpsRedirection();
 
-            // Make sure to use Authentication before Authorization
-            app.UseAuthentication();
             app.UseAuthorization();
+
+            //app.MapHub<ChatHub>("/chathub");
+
 
             app.MapControllers();
 
