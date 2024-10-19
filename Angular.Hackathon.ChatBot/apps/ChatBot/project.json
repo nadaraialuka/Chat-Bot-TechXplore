@@ -24,7 +24,8 @@
           {
             "glob": "**/*",
             "input": "apps/ChatBot/public"
-          }
+          },
+          "apps/ChatBot/src/assets"
         ],
         "styles": [
           "apps/ChatBot/src/styles.scss"
