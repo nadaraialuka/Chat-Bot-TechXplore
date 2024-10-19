@@ -37,6 +37,12 @@ namespace Hackathon.ChatBot
 
             // Make sure to use Authentication before Authorization
             app.UseAuthentication();
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                // Apply any pending migrations
+                dbContext.Database.Migrate();
+            }
             app.UseAuthorization();
 
 
