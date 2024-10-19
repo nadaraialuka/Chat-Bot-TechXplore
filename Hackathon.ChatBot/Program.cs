@@ -42,7 +42,7 @@ namespace Hackathon.ChatBot
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAllOrigins");
             // Make sure to use Authentication before Authorization
             app.UseAuthentication();
             using (var scope = app.Services.CreateScope())
