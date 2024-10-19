@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductsService} from "../../../services/products/products.service";
@@ -11,7 +11,7 @@ import {ChatService} from "../../../services/chat/chat.service";
   templateUrl: './chatbot.component.html',
   styleUrl: './chatbot.component.scss',
 })
-export class ChatbotComponent {
+export class ChatbotComponent implements OnInit {
   isOpen = false;
   messages: any[] = [];
   newMessage = '';
@@ -25,7 +25,26 @@ export class ChatbotComponent {
   }
 
   toggleChat() {
-    this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      this.closeChat();
+    } else {
+      this.openChat();
+    }
+  }
+
+  openChat() {
+    this.isOpen = true;
+    this.loadMessages();
+  }
+
+  closeChat() {
+    this.isOpen = false;
+    this.clearLocalStorage();
+    this.messages = [];
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem('chatMessages');
   }
 
   sendMessage() {
