@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Hackathon.ChatBot.BasicAuth
+namespace Hackathon.ChatBot.Auth
 {
     public class SimplePasswordHasher
     {

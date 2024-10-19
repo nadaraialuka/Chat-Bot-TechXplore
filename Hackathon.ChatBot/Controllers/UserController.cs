@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Hackathon.ChatBot.BasicAuth;
+using Hackathon.ChatBot.Auth;
 using Hackathon.ChatBot.Context;
 using Microsoft.AspNetCore.Mvc;
 

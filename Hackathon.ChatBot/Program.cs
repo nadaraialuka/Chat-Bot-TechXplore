@@ -17,9 +17,9 @@ namespace Hackathon.ChatBot
             // Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddSignalR();
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
+
             var app = builder.Build();
 
             // Swagger configuration
