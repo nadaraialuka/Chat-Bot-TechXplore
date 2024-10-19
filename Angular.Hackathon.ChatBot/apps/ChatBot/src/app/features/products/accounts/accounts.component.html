@@ -1,1 +1,28 @@
-<p>accounts works!</p>
+<div
+  class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700	m-4">
+  <div>
+    <p class="text-xl font-bold dark:text-white">ანგარიშები</p>
+  </div>
+  <table class="table-auto">
+    <thead>
+    <tr>
+      <th class="px-4 py-2">ანგარიშის დასახელება</th>
+      <th class="px-4 py-2">ანგარიშის ნომერი</th>
+      <th class="px-4 py-2">ვალუტები</th>
+      <th class="px-4 py-2">გახსნის თარიღი</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (account of accounts; track account) {
+        <tr>
+          <td class="border  px-4 py-2  font-medium"><span>{{ account.type }}</span> <span>{{ account.subtype }}</span>
+          </td>
+          <td class="border  px-4 py-2  font-medium">{{ account.iban }}</td>
+          <td class="border  px-4 py-2  font-medium"> {{ account.ccy }}</td>
+          <td class="border  px-4 py-2  font-medium"> {{ account.openDate | date:'dd/MM/yyyy' }}</td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>

@@ -1,11 +1,33 @@
 import {Route} from '@angular/router';
-import {AccountsComponent} from "../features/products/accounts/accounts.component";
-import {CardsComponent} from "../features/products/cards/cards.component";
-import {DepositsComponent} from "../features/products/deposits/deposits.component";
+import {productsResolver} from "../resolvers/products/products.resolver";
+import {ProductsComponent} from "../features/products/products.component";
 
 export const appRoutes: Route[] = [
-  {path: '', component: AccountsComponent},
-  {path: 'accounts', component: AccountsComponent},
-  {path: 'cards', component: CardsComponent},
-  {path: 'deposits', component: DepositsComponent},
+  {
+    path: '',
+    redirectTo: 'products',
+    pathMatch: 'full',
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+    // children: [
+    //   {
+    //     path: 'accounts',
+    //     loadComponent: () => import('../features/products/accounts/accounts.component').then((c) => c.AccountsComponent),
+    //   },
+    //   {
+    //     path: 'cards',
+    //     loadComponent: () => import('../features/products/cards/cards.component').then((c) => c.CardsComponent)
+    //   },
+    //   {
+    //     path: 'deposits',
+    //     loadComponent: () => import('../features/products/deposits/deposits.component').then((c) => c.DepositsComponent)
+    //   },
+    // ],
+    resolve: {
+      products: productsResolver
+    },
+  },
+
 ];

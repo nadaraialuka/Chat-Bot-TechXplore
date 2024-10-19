@@ -1,1 +1,30 @@
-<p>cards works!</p>
+<div class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700	m-4">
+  <div>
+    <p class="text-xl font-bold dark:text-white">ბარათები</p>
+  </div>
+  <table class="table-auto">
+    <thead>
+    <tr>
+      <th>ბარათის დასახელება</th>
+      <th>ბარათის ტიპი</th>
+      <th>ანგარიშის ნომერი</th>
+      <th>ვალუტები</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (card of cards; track card) {
+        <tr>
+          <td>{{ card.name }}</td>
+          <td>{{ card.type }}</td>
+          <td>{{ card.iban }}</td>
+          <td class="flex flex-col">
+            @for (ccy of card.ccys; track ccy) {
+              <span>{{ ccy }}</span>
+            }
+          </td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>

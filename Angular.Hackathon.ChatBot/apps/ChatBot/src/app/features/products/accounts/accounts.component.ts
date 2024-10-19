@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, Input} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Account} from "../../../services/products/products.service";
 
 @Component({
   selector: 'app-accounts',
@@ -8,4 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './accounts.component.html',
   styleUrl: './accounts.component.scss',
 })
-export class AccountsComponent {}
+export class AccountsComponent {
+  @Input() accounts!: Account[];
+
+  constructor() {
+  }
+}
