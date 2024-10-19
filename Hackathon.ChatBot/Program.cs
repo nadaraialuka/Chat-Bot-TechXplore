@@ -1,4 +1,5 @@
-using Hackathon.ChatBot.Code.Interfaces;
+
+using Hackathon.ChatBot.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.ChatBot
@@ -19,8 +20,9 @@ namespace Hackathon.ChatBot
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSignalR();
-            builder.Services.AddDbContext<Context.AppDbContext>(options =>
+            builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
+
             var app = builder.Build();
 
             // Swagger configuration

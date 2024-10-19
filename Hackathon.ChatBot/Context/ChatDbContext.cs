@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Hackathon.ChatBot.Auth;
 using Hackathon.ChatBot.Entitites;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,23 +16,24 @@ namespace Hackathon.ChatBot.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _ = modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Entity<User>().HasData(GetUsers());
+            _ = modelBuilder.Entity<User>().HasData(GetUsers());
         }
-        private User[] GetUsers() 
+        private User[] GetUsers()
         {
-            return new User[]
-            {
-                new User{ 
-                    Address = "Tbilisi, Zgvis Ubani", 
-                    Email = "Lukanadaraia2001@gmail.com", 
-                    FirstName = "Luka", 
-                    LastName = "Nadaraia", 
-                    Id = Guid.NewGuid(), 
-                    PasswordHash = "XVD/vyDIwqyZNkUnBVQ52gaoNKTME0QFJXWKijC92GM=",
+            SimplePasswordHasher passwordHasher = new();
+            return
+            [
+                new() {
+                    Address = "Tbilisi, Zgvis Ubani",
+                    Email = "Lukanadaraia2001@gmail.com",
+                    FirstName = "Luka",
+                    LastName = "Nadaraia",
+                    Id = 1,
+                    PasswordHash = passwordHasher.HashPassword("luka1234"),
                     PhoneNumber = "599937315",
                     UserName = "nadaraialuka"
                 }
-            };
+            ];
         }
     }
 }

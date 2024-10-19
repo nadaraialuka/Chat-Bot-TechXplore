@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Hackathon.ChatBot.BasicAuth;
+using Hackathon.ChatBot.Auth;
 using Hackathon.ChatBot.Context;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +26,7 @@ namespace Hackathon.ChatBot.Controllers
             if (user != null && hasher.VerifyPassword(loginRequest.Password, user.PasswordHash))
             {
                 string base64Credentials = GenerateBase64Credentials(loginRequest.UserName, loginRequest.Password);
-                return Ok(new LoginResponse { AuthToken = base64Credentials, UserId = user.Id });
+                return Ok(new LoginResponse { AuthToken = base64Credentials, CustomerId = user.Id });
             }
 
             return Unauthorized("Invalid username or password");
