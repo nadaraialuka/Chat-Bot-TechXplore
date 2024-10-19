@@ -19,7 +19,7 @@ namespace Hackathon.ChatBot.Controllers
 
         [HttpGet]
         [Route("products")]
-        public AggregatedProducts Get()
+        public AggregatedProducts Get([FromHeader]int customerId)
         {
             return new AggregatedProducts()
             {
@@ -65,9 +65,9 @@ namespace Hackathon.ChatBot.Controllers
 
         [HttpPost]
         [Route("chat")]
-        public string Chat(string question)
+        public ChatResponse Chat([FromHeader]int customerId, [FromBody]string question)
         {
-            return openAI.Chat(question);
+            return openAI.Chat(customerId, question);
         }
     }
 }

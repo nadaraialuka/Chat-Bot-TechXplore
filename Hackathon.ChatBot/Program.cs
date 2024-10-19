@@ -12,7 +12,7 @@ namespace Hackathon.ChatBot
 
             // Add services to the container.
             builder.Services.AddTransient<IOpenAI, Code.Implementations.OpenAI> ();
-
+            builder.Services.AddMemoryCache();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
