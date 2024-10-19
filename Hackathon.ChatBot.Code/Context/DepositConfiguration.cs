@@ -11,7 +11,10 @@ namespace Hackathon.ChatBot.Code.Context
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(500);
             builder.Property(x =>x.FriendlyName).HasMaxLength(500);
-            builder.Property(a => a.CustomerId).IsRequired();
+            builder.Property(x =>x.Iban).HasMaxLength(500);
+            builder.Property(x =>x.Ccy).HasMaxLength(500);
+            builder.Property(x =>x.OpenDate).HasDefaultValueSql("GETDATE()");
+            builder.Property(x => x.CustomerId).IsRequired();
         }
     }
 }
