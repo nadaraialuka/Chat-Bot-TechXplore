@@ -1,12 +1,15 @@
-﻿using Hackathon.ChatBot.Hubs;
+﻿using Hackathon.ChatBot.Entitites;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Hackathon.ChatBot.Context
 {
-    public class ChatDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public ChatDbContext(DbContextOptions<ChatDbContext> options) : base(options) { }
-
-        public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<User> Users{ get; set; }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
+        {
+            
+        }
     }
 }

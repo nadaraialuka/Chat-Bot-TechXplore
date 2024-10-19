@@ -1,6 +1,5 @@
 
 using Hackathon.ChatBot.Context;
-using Hackathon.ChatBot.Hubs;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.ChatBot
@@ -18,8 +17,8 @@ namespace Hackathon.ChatBot
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSignalR();
-            builder.Services.AddDbContext<ChatDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("ChatDbConnection")));
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,9 +31,6 @@ namespace Hackathon.ChatBot
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
-            app.MapHub<ChatHub>("/chathub");
-
 
             app.MapControllers();
 

@@ -10,3 +10,4 @@
 *.sqlite
 /Hackathon.ChatBot/obj
 /Hackathon.ChatBot/.vs/Hackathon.ChatBot
+/Hackathon.ChatBot/bin/Debug/net8.0
