@@ -19,14 +19,12 @@ namespace Hackathon.ChatBot.Controllers
 
         [HttpGet]
         [Route("products")]
-        public ActionResult<AggregatedProducts> Get([FromHeader] string customerId)
+        public AggregatedProducts Get([FromHeader]int customerId)
         {
-            return !Request.Headers.TryGetValue("Authorization", out _)
-                ? (ActionResult<AggregatedProducts>)Forbid("Missing Auhtorization Header")
-                : (ActionResult<AggregatedProducts>)new AggregatedProducts()
+            return new AggregatedProducts()
+            {
+                Accounts = new List<Account>()
                 {
-                    Accounts =
-                [
                     new Account()
                     {
                         Id = 1,
@@ -43,33 +41,33 @@ namespace Hackathon.ChatBot.Controllers
                         Type = "მიმდინარე",
                         Subtype = "მიმდინარე"
                     }
-                ],
-                    Cards =
-                [
+                },
+                Cards = new List<Card>()
+                {
                     new Card()
                     {
                         Id = 1,
                         Name = "MC World Elite",
                         Type = "MasterCard"
                     }
-                ],
-                    Deposits =
-                [
+                },
+                Deposits = new List<Deposit>()
+                {
                     new Deposit()
                     {
                         Id = 1,
                         Name = "Goal",
                         FriendlyName = "ახალი მობილური"
                     }
-                ]
-                };
+                }
+            };
         }
 
         [HttpPost]
         [Route("chat")]
-        public string Chat([FromHeader] string customerId, string question)
+        public ChatResponse Chat([FromHeader]int customerId, [FromBody]string question)
         {
-            return openAI.Chat(question);
+            return openAI.Chat(customerId, question);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Hackathon.ChatBot
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddTransient<IOpenAI, Code.Implementations.OpenAI> ();
+            builder.Services.AddMemoryCache();
 
             builder.Services.AddControllers();
 
