@@ -8,5 +8,6 @@
         public string Type { get; set; }
         public string Subtype { get; set; }
         public int CustomerId { get; set; }
+        public DateTime OpenDate { get; set; }
     }
 }

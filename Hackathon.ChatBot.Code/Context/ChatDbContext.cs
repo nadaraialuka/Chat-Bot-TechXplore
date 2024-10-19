@@ -53,7 +53,8 @@ namespace Hackathon.ChatBot.Context
                     Ccy = "GEL",
                     Type = "მიმდინარე",
                     Subtype = "მიმდინარე",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    OpenDate = new DateTime(2023, 1, 1)
                 },
                 new() {
                     Id = 2,
@@ -61,7 +62,8 @@ namespace Hackathon.ChatBot.Context
                     Ccy = "USD",
                     Type = "მიმდინარე",
                     Subtype = "მიმდინარე",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    OpenDate = new DateTime(2023, 1, 1)
                 },
                 new() {
                     Id = 3,
@@ -69,7 +71,8 @@ namespace Hackathon.ChatBot.Context
                     Ccy = "EUR",
                     Type = "მიმდინარე",
                     Subtype = "მიმდინარე",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    OpenDate = new DateTime(2023, 1, 1)
                 }
             ];
         }
@@ -82,13 +85,15 @@ namespace Hackathon.ChatBot.Context
                     Id = 1,
                     Name = "Visa Platinum",
                     Type = "Visa",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    Iban = "TBCGE89081239210333"
                 },
                 new(){
                     Id = 2,
                     Name = "MC World Elite",
                     Type = "MasterCard",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    Iban = "TBCGE89081239210334"
                 }
             ];
         }
@@ -101,13 +106,17 @@ namespace Hackathon.ChatBot.Context
                     Id = 1,
                     Name = "ჩემი მიზანი",
                     FriendlyName = "ახალი მობილური",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    Iban = "TBCGE89081239210111",
+                    Ccy = "GEL"
                 },
                 new(){
                     Id = 2,
                     Name = "ვადიანი ანაბარი",
                     FriendlyName = "ჩემი დანაზოგი",
-                    CustomerId = 1
+                    CustomerId = 1,
+                    Iban = "TBCGE89081239210222",
+                    Ccy = "USD"
                 }
             ];
         }
