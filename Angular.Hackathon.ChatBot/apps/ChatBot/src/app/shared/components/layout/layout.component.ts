@@ -11,8 +11,5 @@ import {ChatbotComponent} from "../chatbot/chatbot.component";
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
-  isChatOpened = false;
-  showChat() {
-    this.isChatOpened = !this.isChatOpened;
-  };
+
 }
