@@ -1,4 +1,5 @@
-﻿using Hackathon.ChatBot.Code.Models;
+﻿using Hackathon.ChatBot.Code.Interfaces;
+using Hackathon.ChatBot.Code.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hackathon.ChatBot.Controllers
@@ -8,10 +9,12 @@ namespace Hackathon.ChatBot.Controllers
     public class ChatBotController : ControllerBase
     {
         private readonly ILogger<ChatBotController> _logger;
+        private readonly IOpenAI openAI;
 
-        public ChatBotController(ILogger<ChatBotController> logger)
+        public ChatBotController(ILogger<ChatBotController> logger, IOpenAI openAI)
         {
             _logger = logger;
+            this.openAI = openAI;
         }
 
         [HttpGet]
@@ -58,6 +61,13 @@ namespace Hackathon.ChatBot.Controllers
                     }
                 }
             };
+        }
+
+        [HttpPost]
+        [Route("chat")]
+        public string Chat(string question)
+        {
+            return openAI.Chat(question);
         }
     }
 }
