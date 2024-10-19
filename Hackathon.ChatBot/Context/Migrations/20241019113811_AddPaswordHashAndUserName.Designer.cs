@@ -4,6 +4,7 @@ using Hackathon.ChatBot.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hackathon.ChatBot.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241019113811_AddPaswordHashAndUserName")]
+    partial class AddPaswordHashAndUserName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,6 @@ namespace Hackathon.ChatBot.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -39,45 +41,27 @@ namespace Hackathon.ChatBot.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers", "User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("5cbe2b6a-4b86-4875-bc02-90464c23811f"),
-                            Address = "Tbilisi, Zgvis Ubani",
-                            Email = "Lukanadaraia2001@gmail.com",
-                            FirstName = "Luka",
-                            LastName = "Nadaraia",
-                            PasswordHash = "XVD/vyDIwqyZNkUnBVQ52gaoNKTME0QFJXWKijC92GM=",
-                            PhoneNumber = "599937315",
-                            UserName = "nadaraialuka"
-                        });
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

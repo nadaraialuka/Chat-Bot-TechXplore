@@ -1,5 +1,6 @@
-
+using Hackathon.ChatBot.BasicAuth;
 using Hackathon.ChatBot.Context;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.ChatBot
@@ -11,17 +12,26 @@ namespace Hackathon.ChatBot
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            // Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddSignalR();
+
+            // Add Basic Authentication
+            builder.Services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+            // Add Authorization
+            builder.Services.AddAuthorization();
+
+            // Add DbContext
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Swagger configuration
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -30,6 +40,8 @@ namespace Hackathon.ChatBot
 
             app.UseHttpsRedirection();
 
+            // Make sure to use Authentication before Authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
