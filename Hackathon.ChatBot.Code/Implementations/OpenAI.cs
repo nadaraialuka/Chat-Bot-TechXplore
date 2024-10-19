@@ -38,7 +38,7 @@ namespace Hackathon.ChatBot.Code.Implementations
             
             prompt = prompt + question;
 
-            ChatClient client = new(model: "gpt-4o", apiKey: "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");
+            ChatClient client = new(model: "gpt-4o", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
 
             ChatCompletion completion = client.CompleteChat(prompt);
 

@@ -1,5 +1,4 @@
-
-using Hackathon.ChatBot.Context;
+using Hackathon.ChatBot.Code.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hackathon.ChatBot
@@ -11,7 +10,7 @@ namespace Hackathon.ChatBot
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddTransient<IOpenAI, Code.Implementations.OpenAI> ();
+            builder.Services.AddTransient<IOpenAI, Code.Implementations.OpenAI>();
             builder.Services.AddMemoryCache();
 
             builder.Services.AddControllers();
@@ -20,7 +19,7 @@ namespace Hackathon.ChatBot
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSignalR();
-            builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddDbContext<Context.AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
             var app = builder.Build();
 
