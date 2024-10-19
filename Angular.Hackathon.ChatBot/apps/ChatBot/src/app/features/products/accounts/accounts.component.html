@@ -1,28 +1,36 @@
-<div
-  class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700	m-4">
-  <div>
-    <p class="text-xl font-bold dark:text-white">ანგარიშები</p>
-  </div>
-  <table class="table-auto">
-    <thead>
-    <tr>
-      <th class="px-4 py-2">ანგარიშის დასახელება</th>
-      <th class="px-4 py-2">ანგარიშის ნომერი</th>
-      <th class="px-4 py-2">ვალუტები</th>
-      <th class="px-4 py-2">გახსნის თარიღი</th>
-    </tr>
-    </thead>
-    <tbody>
-      @for (account of accounts; track account) {
-        <tr>
-          <td class="border  px-4 py-2  font-medium"><span>{{ account.type }}</span> <span>{{ account.subtype }}</span>
-          </td>
-          <td class="border  px-4 py-2  font-medium">{{ account.iban }}</td>
-          <td class="border  px-4 py-2  font-medium"> {{ account.ccy }}</td>
-          <td class="border  px-4 py-2  font-medium"> {{ account.openDate | date:'dd/MM/yyyy' }}</td>
-        </tr>
-      }
-
-    </tbody>
-  </table>
+<div class="mb-3">
+  <p class="text-xl font-bold dark:text-white">ანგარიშები</p>
 </div>
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table
+          class="min-w-full text-center text-sm font-light text-surface dark:text-white">
+          <thead
+            class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
+          <tr>
+            <th scope="col" class=" px-6 py-4">ანგარიშის დასახელება</th>
+            <th scope="col" class=" px-6 py-4">ანგარიშის ნომერი</th>
+            <th scope="col" class=" px-6 py-4">ვალუტები</th>
+            <th scope="col" class=" px-6 py-4">გახსნის თარიღი</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (account of accounts; track account) {
+              <tr class="border-b border-neutral-200 dark:border-white/10">
+                <td class="flex flex-col whitespace-nowrap  px-6 py-4 font-medium">
+                  <span>{{ account.type }}</span>
+                  <span class="text-gray-500">{{ account.subtype }}</span></td>
+                <td class="whitespace-nowrap  px-6 py-4">{{ account.iban }}</td>
+                <td class="whitespace-nowrap  px-6 py-4"> {{ account.ccy }}</td>
+                <td class="whitespace-nowrap  px-6 py-4"> {{ account.openDate | date:'dd/MM/yyyy' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

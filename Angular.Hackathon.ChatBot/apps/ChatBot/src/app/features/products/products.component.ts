@@ -36,9 +36,11 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(result => {
-      this.product = result['products'];
-    });
+    this.route.data.subscribe(
+      product => {
+        this.product = product['products'];
+      }
+    );
   }
 
   //scroll to specific section
