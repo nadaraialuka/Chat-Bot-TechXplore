@@ -16,6 +16,7 @@ export class ChatbotComponent implements OnInit {
   messages: any[] = [];
   newMessage = '';
   isLoading = false;
+  showNotification = false;
 
   constructor(private chatService: ChatService, private productsService: ProductsService) {
   }
@@ -50,16 +51,12 @@ export class ChatbotComponent implements OnInit {
   sendMessage() {
     if (this.newMessage.trim()) {
       this.addMessage(this.newMessage, true);
-      // Simulate a response (replace this with actual API call)
-      // setTimeout(() => {
-      //   this.addMessage('This is a simulated response.', false);
-      // }, 1000);
       this.isLoading = true;
       const customerId = 1
       this.chatService.chat(customerId, this.newMessage).subscribe(r => {
-        this.addMessage(r.answer, false);
+        this.addMessage(r.answer, false, r.isFinalAnswer);
         if (r.isFinalAnswer) {
-          this.productsService.getProducts(customerId)
+          this.productsService.getProducts(customerId).subscribe()
         }
         this.isLoading = false;
       });
@@ -67,9 +64,19 @@ export class ChatbotComponent implements OnInit {
     }
   }
 
-  addMessage(text: string, isUser: boolean) {
+  addMessage(text: string, isUser: boolean, isFinalAnswer: boolean = false) {
     this.messages.push({text, isUser});
     this.saveMessages();
+    if (isFinalAnswer) {
+      this.showSuccessNotification();
+    }
+  }
+
+  showSuccessNotification() {
+    this.showNotification = true;
+    setTimeout(() => {
+      this.showNotification = false;
+    }, 3000); // Hide notification after 3 seconds
   }
 
   saveMessages() {
@@ -82,24 +89,4 @@ export class ChatbotComponent implements OnInit {
       this.messages = JSON.parse(savedMessages);
     }
   }
-
-  /*
-   message: FormControl = new FormControl();
-   response!: string;
-
-   constructor(private chatService: ChatService, private productsService: ProductsService) {
-   }
-
-   sendMessage() {
-     const customerId = 1
-     this.chatService.chat(customerId, this.message.value).subscribe(r => {
-       this.response = r.answer;
-       if (r.isFinalAnswer) {
-         this.productsService.getProducts(customerId)
-       }
-
-     });
-   }
-
-   */
 }

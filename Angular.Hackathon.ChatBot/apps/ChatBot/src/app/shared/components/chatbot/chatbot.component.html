@@ -20,6 +20,11 @@
       </button>
     </div>
 
+    <!-- Notification -->
+    <div *ngIf="showNotification" class="bg-green-500 text-white p-2 text-center">
+      თქვენი მოთხოვნა შესრულებულია
+    </div>
+
     <!-- Chat messages -->
     <div class="flex-1 p-4 overflow-y-auto">
       <div *ngFor="let message of messages" class="mb-2 flex"
