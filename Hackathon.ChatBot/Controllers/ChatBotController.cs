@@ -37,9 +37,9 @@ namespace Hackathon.ChatBot.Controllers
         [Route("chat")]
         public async Task<ActionResult<ChatResponse>> Chat([FromQuery]string question, [FromHeader]int customerId)
         {
-            await Task.Delay(2_000);
-            return Ok(new ChatResponse { Answer = "Hello Mariamoo", IsFinalAnswer =false});
-            //return openAI.Chat(customerId, question);
+            //await Task.Delay(2_000);
+            //return Ok(new ChatResponse { Answer = "Hello Mariamoo", IsFinalAnswer =false});
+            return openAI.Chat(customerId, question);
         }
     }
 }
