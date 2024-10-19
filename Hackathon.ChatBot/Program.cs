@@ -23,7 +23,15 @@ namespace Hackathon.ChatBot
             builder.Services.AddSignalR();
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("PersistenceConnection")));
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
             var app = builder.Build();
 
             // Swagger configuration
