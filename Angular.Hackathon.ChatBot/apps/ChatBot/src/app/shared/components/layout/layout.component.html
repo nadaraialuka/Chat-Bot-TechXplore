@@ -1,8 +1,12 @@
 <app-header></app-header>
 <ng-content></ng-content>
-<button class="w-16" (click)="showChat()">
-  <img [src]="'assets/comments-regular.svg'" alt="support chat">
+<div>
+<button
+  class="flex justify-center  items-center  w-full"
+  (click)="showChat()">
+  <img class="w-9  bg-blue-700 absolute  bottom-0 right-0" [src]="'assets/comments-regular.svg'" alt="support chat">
 </button>
-@if (isChatOpened){
+</div>
+@if (isChatOpened) {
   <app-chatbot></app-chatbot>
 }
