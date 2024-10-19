@@ -7,7 +7,7 @@ namespace Hackathon.ChatBot.Code.Implementations
     {
         public string Chat(string question)
         {
-            ChatClient client = new(model: "gpt-4o", apiKey: "sk-dFHbcUWmAltL1xBLLArAaewjFoHJUhC6yNpyYTVBIqT3BlbkFJKV5znMtt9sMs-HnIsDztS-R9gn3Dg2e5713AUZW6EA");
+            ChatClient client = new(model: "gpt-4o", apiKey: "");
 
             ChatCompletion completion = client.CompleteChat(question);
 
