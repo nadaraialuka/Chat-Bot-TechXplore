@@ -1,1 +1,30 @@
-<p>deposits works!</p>
+<div
+  class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700	m-4">
+  <div>
+    <p class="text-xl font-bold dark:text-white">ანაბრები</p>
+  </div>
+  <table class="table-auto">
+    <thead>
+    <tr>
+      <th>ანაბრის დასახელება</th>
+      <th>ანგარიშის ნომერი</th>
+      <th>ვალუტები</th>
+      <th>გახსნის თარიღი</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (deposit of deposits; track deposit) {
+        <tr>
+          <td>
+            <span class="text-base">{{ deposit.friendlyName }}</span>
+            <span class="text-sm">{{ deposit.name }}</span>
+          </td>
+          <td>{{ deposit.iban }}</td>
+          <td>{{ deposit.ccy }}</td>
+          <td>{{ deposit.openDate| date:'dd/MM/yyyy' }}</td>
+        </tr>
+      }
+
+    </tbody>
+  </table>
+</div>
