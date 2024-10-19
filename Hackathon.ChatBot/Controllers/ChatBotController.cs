@@ -19,12 +19,12 @@ namespace Hackathon.ChatBot.Controllers
 
         [HttpGet]
         [Route("products")]
-        public AggregatedProducts Get([FromHeader]int customerId)
+        public AggregatedProducts Get([FromHeader] int customerId)
         {
             return new AggregatedProducts()
             {
-                Accounts = new List<Account>()
-                {
+                Accounts =
+                [
                     new Account()
                     {
                         Id = 1,
@@ -41,31 +41,31 @@ namespace Hackathon.ChatBot.Controllers
                         Type = "მიმდინარე",
                         Subtype = "მიმდინარე"
                     }
-                },
-                Cards = new List<Card>()
-                {
+                ],
+                Cards =
+                [
                     new Card()
                     {
                         Id = 1,
                         Name = "MC World Elite",
                         Type = "MasterCard"
                     }
-                },
-                Deposits = new List<Deposit>()
-                {
+                ],
+                Deposits =
+                [
                     new Deposit()
                     {
                         Id = 1,
                         Name = "Goal",
                         FriendlyName = "ახალი მობილური"
                     }
-                }
+                ]
             };
         }
 
         [HttpPost]
         [Route("chat")]
-        public ChatResponse Chat([FromHeader]int customerId, [FromBody]string question)
+        public ChatResponse Chat([FromBody]string question, [FromHeader]int customerId)
         {
             return openAI.Chat(customerId, question);
         }

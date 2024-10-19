@@ -2,7 +2,7 @@
 {
     public class LoginResponse
     {
-        public Guid UserId { get; set; }
+        public int CustomerId { get; set; }
         public string AuthToken { get; set; }
     }
 }
