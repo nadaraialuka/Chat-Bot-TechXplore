@@ -5,8 +5,10 @@
 *.vsidx
 *.testlog
 *.manifest
-*.json
 *.wsuo
 *.sqlite
 /Hackathon.ChatBot/obj
 /Hackathon.ChatBot/.vs/Hackathon.ChatBot
+
+# IDEs and editors
+/.idea
