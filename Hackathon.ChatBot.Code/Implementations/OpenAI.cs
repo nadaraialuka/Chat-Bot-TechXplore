@@ -10,7 +10,7 @@ namespace Hackathon.ChatBot.Code.Implementations
 
         public OpenAI(IConfiguration configuration)
         {
-            _key = configuration.GetSection("OpenAI_Key").Value!;
+            _key = configuration.GetSection("Customer_Name").Value!;
         }
 
         public string Chat(string question)
