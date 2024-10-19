@@ -6,16 +6,9 @@ namespace Hackathon.ChatBot.Code.Implementations
 {
     public class OpenAI : IOpenAI
     {
-        private readonly string _key;
-
-        public OpenAI(IConfiguration configuration)
-        {
-            _key = configuration.GetSection("OpenAI_Key").Value!;
-        }
-
         public string Chat(string question)
         {
-            ChatClient client = new(model: "gpt-4o", apiKey: "");
+            ChatClient client = new(model: "gpt-4o", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
 
             ChatCompletion completion = client.CompleteChat(question);
 
