@@ -1,0 +1,7 @@
+<div class="bg-white shadow-md h-14 p-4">
+  <ul class="flex gap-x-20 items-center h-full">
+    @for (product of products; track product) {
+      <li><a [routerLink]="[product.route]">{{ product.name }}</a></li>
+    }
+  </ul>
+</div>
