@@ -1,4 +1,7 @@
 
+using Hackathon.ChatBot.Code.Interfaces;
+using Hackathon.ChatBot.Code.Implementations;
+
 namespace Hackathon.ChatBot
 {
     public class Program
@@ -8,12 +11,16 @@ namespace Hackathon.ChatBot
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddTransient<IOpenAI, Code.Implementations.OpenAI> ();
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddSignalR();
+            //builder.Services.AddDbContext<ChatDbContext>(options =>
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("ChatDbConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -26,6 +33,8 @@ namespace Hackathon.ChatBot
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            //app.MapHub<ChatHub>("/chathub");
 
 
             app.MapControllers();
