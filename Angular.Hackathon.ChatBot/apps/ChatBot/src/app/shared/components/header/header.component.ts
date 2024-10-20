@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,12 @@ import {CommonModule} from '@angular/common';
 export class HeaderComponent {
   userFullName: string;
 
-  constructor() {
-    this.userFullName = 'მარიამ ზარდიაშილი';
+  constructor(private _router: Router) {
+    this.userFullName = 'ნადარაია ლუკა';
+  }
+
+  logout() {
+    localStorage.clear();
+    this._router.navigate(['logout'])
   }
 }

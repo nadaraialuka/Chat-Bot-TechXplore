@@ -1,4 +1,14 @@
-import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductsService} from "../../../services/products/products.service";
@@ -10,6 +20,7 @@ import {ChatService} from "../../../services/chat/chat.service";
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './chatbot.component.html',
   styleUrl: './chatbot.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
   private shouldScroll = false;
@@ -20,14 +31,16 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   isLoading = false;
   showNotification = false;
 
+  @Output() productsData: EventEmitter<any> = new EventEmitter()
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
 
-  constructor(private chatService: ChatService, private productsService: ProductsService) {
+  constructor(private chatService: ChatService, private productsService: ProductsService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.loadMessages();
+    this.cdr.detectChanges();
   }
 
   ngAfterViewChecked() {
@@ -35,13 +48,17 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       this.scrollToBottom();
       this.shouldScroll = false;
     }
+    this.cdr.detectChanges();
   }
 
   scrollToBottom() {
     try {
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
     } catch (err) {
+      console.error(err)
     }
+    this.cdr.detectChanges();
+
   }
 
   toggleChat() {
@@ -50,22 +67,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     } else {
       this.openChat();
     }
+    this.cdr.detectChanges();
   }
 
   openChat() {
     this.isOpen = true;
     this.loadMessages();
     this.shouldScroll = true;
+    this.cdr.detectChanges();
   }
 
   closeChat() {
     this.isOpen = false;
     this.clearLocalStorage();
     this.messages = [];
+    this.cdr.detectChanges();
   }
 
   clearLocalStorage() {
     localStorage.removeItem('chatMessages');
+    this.cdr.detectChanges();
   }
 
   sendMessage() {
@@ -76,13 +97,17 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       this.chatService.chat(customerId, this.newMessage).subscribe(r => {
         this.addMessage(r.answer, false, r.isFinalAnswer);
         if (r.isFinalAnswer) {
-          this.productsService.getProducts(customerId).subscribe()
+          this.productsService.getProducts(customerId).subscribe(r => {
+            this.productsData.emit(r)
+          })
+          // this._router.navigate(['products'])
         }
         this.isLoading = false;
       });
       this.newMessage = '';
     }
     this.shouldScroll = true;
+    this.cdr.detectChanges();
   }
 
   addMessage(text: string, isUser: boolean, isFinalAnswer: boolean = false) {
@@ -92,17 +117,24 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (isFinalAnswer) {
       this.showSuccessNotification();
     }
+    this.cdr.detectChanges();
+
   }
 
   showSuccessNotification() {
     this.showNotification = true;
     setTimeout(() => {
       this.showNotification = false;
+      this.cdr.detectChanges();
     }, 3000); // Hide notification after 3 seconds
+    this.cdr.detectChanges();
+
   }
 
   saveMessages() {
     localStorage.setItem('chatMessages', JSON.stringify(this.messages));
+    this.cdr.detectChanges();
+
   }
 
   loadMessages() {
@@ -110,5 +142,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (savedMessages) {
       this.messages = JSON.parse(savedMessages);
     }
+    this.cdr.detectChanges();
   }
 }

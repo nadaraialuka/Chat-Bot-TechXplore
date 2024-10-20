@@ -1,3 +1,7 @@
-<app-header></app-header>
+@if (customerId) {
+  <app-header></app-header>
+}
 <ng-content></ng-content>
-<app-chatbot></app-chatbot>
+@if (customerId) {
+<!--  <app-chatbot></app-chatbot>-->
+}
