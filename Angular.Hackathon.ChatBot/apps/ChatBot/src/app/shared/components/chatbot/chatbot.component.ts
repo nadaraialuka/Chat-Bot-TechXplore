@@ -47,6 +47,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (this.shouldScroll) {
       this.scrollToBottom();
       this.shouldScroll = false;
+      this.cdr.detectChanges();
     }
     this.cdr.detectChanges();
   }
@@ -104,7 +105,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         }
         this.isLoading = false;
         this.cdr.detectChanges()
-        
+
       });
       this.newMessage = '';
       this.cdr.detectChanges()
