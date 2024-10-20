@@ -22,7 +22,7 @@
                   <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ card.name }}</td>
                   <td class="whitespace-nowrap  px-6 py-4 font-medium"> {{ card.type }}</td>
                   <td class="whitespace-nowrap  px-6 py-4">{{ card.iban }}</td>
-                  <td class="whitespace-nowrap  px-6 py-4">@for (ccy of card.ccys; track ccy) {
+                  <td class="flex flex-col whitespace-nowrap  px-6 py-4">@for (ccy of card.ccys; track ccy) {
                     <span>{{ ccy }}</span>
                   }</td>
                 </tr>

@@ -26,6 +26,8 @@ export class LoginComponent {
     this._loginService.login(this.userName.value, this.password.value).subscribe(res => {
         this._router.navigate(['products']);
         localStorage.setItem('customerId', JSON.stringify(res.customerId));
+        localStorage.setItem('authToken', JSON.stringify(res.authToken));
+        localStorage.setItem('fullName', JSON.stringify(res.fullName));
       },
       catchError((err) => {
         localStorage.clear();
