@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router} from "@angular/router";
 
@@ -9,16 +9,25 @@ import {Router} from "@angular/router";
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnChanges {
   userFullName: string;
+  customerId!: number
 
   constructor(private _router: Router, private cdr: ChangeDetectorRef) {
     this.userFullName = 'ნადარაია ლუკა';
   }
 
+  ngOnInit() {
+    this.customerId = JSON.parse(<string>localStorage.getItem('customerId'));
+    this.cdr.detectChanges()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.cdr.detectChanges()
+  }
+
   logout() {
     localStorage.clear();
     this._router.navigate(['logout']);
-    this.cdr.detectChanges();
   }
 }
