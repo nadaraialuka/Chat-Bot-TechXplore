@@ -33,8 +33,8 @@ namespace Hackathon.ChatBot.Context
                 new() {
                     Address = "Tbilisi, Zgvis Ubani",
                     Email = "Lukanadaraia2001@gmail.com",
-                    FirstName = "Luka",
-                    LastName = "Nadaraia",
+                    FirstName = "ლუკა",
+                    LastName = "ნადარაია",
                     Id = 1,
                     PasswordHash = passwordHasher.HashPassword("luka1234"),
                     PhoneNumber = "599937315",
@@ -43,8 +43,8 @@ namespace Hackathon.ChatBot.Context
                 new() {
                     Address = "Tbilisi, Tsereteli",
                     Email = "mzardiashvili@gmail.com",
-                    FirstName = "Mariam",
-                    LastName = "Zardiashvili",
+                    FirstName = "მარიამ",
+                    LastName = "ზარდიაშვილი",
                     Id = 2,
                     PasswordHash = passwordHasher.HashPassword("mari1234"),
                     PhoneNumber = "599937316",
