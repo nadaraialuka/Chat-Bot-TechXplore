@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "../header/header.component";
 import {ChatbotComponent} from "../chatbot/chatbot.component";
@@ -9,12 +9,17 @@ import {ChatbotComponent} from "../chatbot/chatbot.component";
   imports: [CommonModule, HeaderComponent, ChatbotComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
   customerId!: number;
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     this.customerId = JSON.parse(<string>localStorage.getItem('customerId'));
+  }
+
+  ngOnInit() {
+    this.cdr.detectChanges()
   }
 
 }

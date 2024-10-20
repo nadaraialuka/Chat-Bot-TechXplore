@@ -93,7 +93,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     if (this.newMessage.trim()) {
       this.addMessage(this.newMessage, true);
       this.isLoading = true;
-      const customerId = 1
+      const customerId = JSON.parse(<string>localStorage.getItem('customerId'));
       this.chatService.chat(customerId, this.newMessage).subscribe(r => {
         this.addMessage(r.answer, false, r.isFinalAnswer);
         if (r.isFinalAnswer) {

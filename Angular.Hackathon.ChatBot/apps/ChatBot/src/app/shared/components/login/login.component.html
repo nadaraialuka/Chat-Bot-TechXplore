@@ -9,6 +9,7 @@
       <span>{{ errorMessage }}</span>
       <div class="mb-4">
         <input
+          [formControl]="userName"
           type="text"
           placeholder="მომხმარებელი"
           class="w-full p-4 border rounded-lg outline-none focus:border-blue-500"
@@ -16,6 +17,7 @@
       </div>
       <div class="mb-6">
         <input
+          [formControl]="password"
           type="password"
           placeholder="პაროლი"
           class="w-full p-4 border rounded-lg outline-none focus:border-blue-500"
