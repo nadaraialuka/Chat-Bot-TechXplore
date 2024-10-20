@@ -5,30 +5,36 @@
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
-        <table
-          class="min-w-full text-center text-sm font-light text-surface dark:text-white">
-          <thead
-            class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
-          <tr>
-            <th scope="col" class=" px-6 py-4">ანაბრის დასახელება</th>
-            <th scope="col" class=" px-6 py-4">ანგარიშის ნომერი</th>
-            <th scope="col" class=" px-6 py-4">ვალუტა</th>
-            <th scope="col" class=" px-6 py-4">გახსნის თარიღი</th>
-          </tr>
-          </thead>
-          <tbody>
-            @for (deposit of deposits; track deposit) {
-              <tr class="border-b border-neutral-200 dark:border-white/10">
-                <td class="flex flex-col whitespace-nowrap  px-6 py-4 font-medium">
-                  <span>{{ deposit.friendlyName }}</span>
-                  <span class="text-gray-500">{{ deposit.name }}</span></td>
-                <td class="whitespace-nowrap  px-6 py-4">{{ deposit.iban }}</td>
-                <td class="whitespace-nowrap  px-6 py-4">{{ deposit.ccy }}</td>
-                <td class="whitespace-nowrap  px-6 py-4">{{ deposit.openDate| date:'dd/MM/yyyy' }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+        @if (deposits.length > 0) {
+          <table
+            class="min-w-full text-center text-sm font-light text-surface dark:text-white">
+            <thead
+              class="border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800">
+            <tr>
+              <th scope="col" class=" px-6 py-4">ანაბრის დასახელება</th>
+              <th scope="col" class=" px-6 py-4">ანგარიშის ნომერი</th>
+              <th scope="col" class=" px-6 py-4">ვალუტა</th>
+              <th scope="col" class=" px-6 py-4">გახსნის თარიღი</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (deposit of deposits; track deposit) {
+                <tr class="border-b border-neutral-200 dark:border-white/10">
+                  <td class="flex flex-col whitespace-nowrap  px-6 py-4 font-medium">
+                    <span>{{ deposit.friendlyName }}</span>
+                    <span class="text-gray-500">{{ deposit.name }}</span></td>
+                  <td class="whitespace-nowrap  px-6 py-4">{{ deposit.iban }}</td>
+                  <td class="whitespace-nowrap  px-6 py-4">{{ deposit.ccy }}</td>
+                  <td class="whitespace-nowrap  px-6 py-4">{{ deposit.openDate| date:'dd/MM/yyyy' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+        @if (deposits.length === 0){
+          <p class="mb-6 text-lg text-left font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">პროდუქტი
+            არ არის დამატებული</p>
+        }
       </div>
     </div>
   </div>

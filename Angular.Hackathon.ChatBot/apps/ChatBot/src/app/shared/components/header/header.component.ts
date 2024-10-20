@@ -10,15 +10,15 @@ import {Router} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, OnChanges {
-  userFullName: string;
+  userFullName!: string;
   customerId!: number
 
   constructor(private _router: Router, private cdr: ChangeDetectorRef) {
-    this.userFullName = 'ნადარაია ლუკა';
   }
 
   ngOnInit() {
     this.customerId = JSON.parse(<string>localStorage.getItem('customerId'));
+    this.userFullName = JSON.parse(<string>localStorage.getItem('fullName'));
     this.cdr.detectChanges()
   }
 
