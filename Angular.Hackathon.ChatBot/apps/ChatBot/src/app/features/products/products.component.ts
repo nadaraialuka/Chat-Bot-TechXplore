@@ -6,11 +6,12 @@ import {AccountsComponent} from "./accounts/accounts.component";
 import {DepositsComponent} from "./deposits/deposits.component";
 import {CardsComponent} from "./cards/cards.component";
 import {ChatbotComponent} from "../../shared/components/chatbot/chatbot.component";
+import {HeaderComponent} from "../../shared/components/header/header.component";
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, AccountsComponent, DepositsComponent, CardsComponent, ChatbotComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, AccountsComponent, DepositsComponent, CardsComponent, ChatbotComponent, HeaderComponent],
   providers: [ProductsService],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -19,6 +20,7 @@ import {ChatbotComponent} from "../../shared/components/chatbot/chatbot.componen
 export class ProductsComponent implements OnInit {
   productsMenu: { name: string, route: string }[];
   product!: Product;
+  activeTab: string = 'cards';
 
   constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
     this.productsMenu = [
@@ -48,10 +50,8 @@ export class ProductsComponent implements OnInit {
 
   //scroll to specific section
   scrollTo(section: string): void {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }
+    this.activeTab = section
+
   }
 
   getNewProducts(event: any) {

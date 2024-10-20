@@ -1,27 +1,30 @@
+<app-header></app-header>
 <div class="bg-white shadow-md h-14 p-4 mb-8 sticky top-12">
   <ul class="flex gap-x-20 items-center h-full">
     @for (product of productsMenu; track product) {
       <li class="cursor-pointer">
-        <a (click)="scrollTo(product.route)">{{ product.name }}</a>
+        <a [ngClass]="{'underline decoration-sky-500':activeTab===product.route}"
+           (click)="scrollTo(product.route)">{{ product.name }}</a>
       </li>
     }
   </ul>
 </div>
 <div class="flex flex-col gap-y-3 items-center">
-  <section id="cards">
+  @if (activeTab === 'cards') {
     @if (product.cards) {
       <app-cards [cards]="product.cards"></app-cards>
     }
-  </section>
-  <section id="accounts">
+  }
+  @if (activeTab === 'accounts') {
     @if (product.accounts) {
       <app-accounts [accounts]="product.accounts"></app-accounts>
     }
-  </section>
-  <section id="deposits">
+  }
+
+  @if (activeTab === 'deposits') {
     @if (product.deposits) {
       <app-deposits [deposits]="product.deposits"></app-deposits>
     }
-  </section>
+  }
 </div>
 <app-chatbot (productsData)="getNewProducts($event)"></app-chatbot>
