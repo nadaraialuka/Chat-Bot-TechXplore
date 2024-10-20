@@ -1,10 +1,12 @@
-<div class="flex justify-between items-center bg-sky-500 h-12 p-4">
-  <img class="w-44" [src]="'assets/Logo-ka-full.svg'" alt="logo">
-  <div class="flex gap-x-6">
-    <div class="flex gap-x-2 items-center">
-      <p class="text-white">{{ userFullName }}</p>
-      <img class="w-8 rounded-full" [src]="'assets/no-profile.webp'" alt="no profile"/>
+@if (customerId) {
+  <div class="flex justify-between items-center bg-sky-500 h-12 p-4 sticky top-0">
+    <img class="w-44" [src]="'assets/Logo-ka-full.svg'" alt="logo">
+    <div class="flex gap-x-6">
+      <div class="flex gap-x-2 items-center">
+        <p class="text-white">{{ userFullName }}</p>
+        <img class="w-8 rounded-full" [src]="'assets/no-profile.webp'" alt="no profile"/>
+      </div>
+      <img (click)="logout()" class="w-6" [src]="'assets/right-from-bracket-solid.svg'" alt="logout_icon"/>
     </div>
-    <img (click)="logout()" class="w-6" [src]="'assets/right-from-bracket-solid.svg'" alt="logout_icon"/>
   </div>
-</div>
+}

@@ -1,13 +1,13 @@
-<div class="bg-white shadow-md h-14 p-4 mb-8">
+<div class="bg-white shadow-md h-14 p-4 mb-8 sticky top-12">
   <ul class="flex gap-x-20 items-center h-full">
     @for (product of productsMenu; track product) {
-      <li>
+      <li class="cursor-pointer">
         <a (click)="scrollTo(product.route)">{{ product.name }}</a>
       </li>
     }
   </ul>
 </div>
-<div class="flex flex-col gap-y-3">
+<div class="flex flex-col gap-y-3 items-center">
   <section id="cards">
     @if (product.cards) {
       <app-cards [cards]="product.cards"></app-cards>
