@@ -39,6 +39,16 @@ namespace Hackathon.ChatBot.Context
                     PasswordHash = passwordHasher.HashPassword("luka1234"),
                     PhoneNumber = "599937315",
                     UserName = "nadaraialuka"
+                },
+                new() {
+                    Address = "Tbilisi, Tsereteli",
+                    Email = "mzardiashvili@gmail.com",
+                    FirstName = "Mariam",
+                    LastName = "Zardiashvili",
+                    Id = 2,
+                    PasswordHash = passwordHasher.HashPassword("mari1234"),
+                    PhoneNumber = "599937316",
+                    UserName = "mzardiashvili"
                 }
             ];
         }
