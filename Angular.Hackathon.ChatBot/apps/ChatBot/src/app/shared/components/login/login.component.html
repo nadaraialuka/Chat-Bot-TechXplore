@@ -1,0 +1,27 @@
+<div class="flex flex-col min-h-screen bg-cover bg-no-repeat bg-center"
+     style="background-image: url('/assets/tbc-login.svg');">
+  <div class="mb-4">
+    <img src="/assets/Logo-ka.svg" alt="Header Image" class="h-24 w-40 object-contain">
+  </div>
+  <div class="flex flex-col items-start ml-16">
+    <div class="bg-gray-100 p-10 rounded-lg shadow-lg w-full max-w-lg ml-16">
+      <h2 class="text-xl font-bold mb-6 text-left">გამარჯობა</h2>
+      <span>{{ errorMessage }}</span>
+      <div class="mb-4">
+        <input
+          type="text"
+          placeholder="მომხმარებელი"
+          class="w-full p-4 border rounded-lg outline-none focus:border-blue-500"
+        />
+      </div>
+      <div class="mb-6">
+        <input
+          type="password"
+          placeholder="პაროლი"
+          class="w-full p-4 border rounded-lg outline-none focus:border-blue-500"
+        />
+      </div>
+      <button (click)="login()" class="w-full bg-sky-500 text-white p-4 rounded-lg hover:bg-blue-700 transition">შესვლა
+      </button>
+    </div>
+  </div>

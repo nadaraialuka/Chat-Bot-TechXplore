@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from "../header/header.component";
 import {ChatbotComponent} from "../chatbot/chatbot.component";
@@ -11,5 +11,10 @@ import {ChatbotComponent} from "../chatbot/chatbot.component";
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
+  customerId!: number;
+
+  constructor() {
+    this.customerId = JSON.parse(<string>localStorage.getItem('customerId'));
+  }
 
 }
