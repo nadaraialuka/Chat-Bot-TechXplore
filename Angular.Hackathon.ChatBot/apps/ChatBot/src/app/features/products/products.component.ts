@@ -43,6 +43,7 @@ export class ProductsComponent implements OnInit {
         this.product = product['products'];
       }
     );
+    this.cdr.detectChanges()
   }
 
   //scroll to specific section
@@ -56,6 +57,5 @@ export class ProductsComponent implements OnInit {
   getNewProducts(event: any) {
     this.product = event;
     this.cdr.detectChanges();
-    console.log('async')
   }
 }
