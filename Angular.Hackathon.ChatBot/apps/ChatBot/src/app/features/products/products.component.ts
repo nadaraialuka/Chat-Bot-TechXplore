@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ActivatedRoute, RouterLink, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {Product, ProductsService} from "../../services/products/products.service";
 import {AccountsComponent} from "./accounts/accounts.component";
 import {DepositsComponent} from "./deposits/deposits.component";
@@ -21,8 +21,8 @@ export class ProductsComponent implements OnInit {
   productsMenu: { name: string, route: string }[];
   product!: Product;
   activeTab: string = 'cards';
-
-  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
+  customerId!:number;
+  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private _router:Router) {
     this.productsMenu = [
       {
         name: 'ბარათები',
@@ -37,6 +37,7 @@ export class ProductsComponent implements OnInit {
         route: 'deposits'
       }
     ]
+    this.customerId = JSON.parse(<string>localStorage.getItem('customerId'))
   }
 
   ngOnInit() {
@@ -45,6 +46,9 @@ export class ProductsComponent implements OnInit {
         this.product = product['products'];
       }
     );
+    if(!this.customerId){
+      this._router.navigate(['login'])
+    }
     this.cdr.detectChanges()
   }
 

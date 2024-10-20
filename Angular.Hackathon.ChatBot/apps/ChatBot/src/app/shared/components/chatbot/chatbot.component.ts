@@ -100,11 +100,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
           this.productsService.getProducts(customerId).subscribe(r => {
             this.productsData.emit(r)
           })
-          // this._router.navigate(['products'])
+          this.cdr.detectChanges();
         }
         this.isLoading = false;
+        this.cdr.detectChanges()
+        
       });
       this.newMessage = '';
+      this.cdr.detectChanges()
     }
     this.shouldScroll = true;
     this.cdr.detectChanges();
