@@ -26,7 +26,7 @@ namespace Hackathon.ChatBot.Controllers
             if (user != null && hasher.VerifyPassword(loginRequest.Password, user.PasswordHash))
             {
                 string base64Credentials = GenerateBase64Credentials(loginRequest.UserName, loginRequest.Password);
-                return Ok(new LoginResponse { AuthToken = base64Credentials, CustomerId = user.Id });
+                return Ok(new LoginResponse { AuthToken = base64Credentials, CustomerId = user.Id, FullName = user.FirstName + " " + user.LastName });
             }
 
             return Unauthorized("Invalid username or password");
