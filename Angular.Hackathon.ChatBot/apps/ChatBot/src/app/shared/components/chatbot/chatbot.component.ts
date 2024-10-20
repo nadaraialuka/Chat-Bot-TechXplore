@@ -55,11 +55,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   scrollToBottom() {
     try {
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+      this.cdr.detectChanges();
     } catch (err) {
       console.error(err)
     }
     this.cdr.detectChanges();
-
   }
 
   toggleChat() {
